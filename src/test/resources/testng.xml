@@ -4,7 +4,7 @@
         <listener class-name="org.example.listener.TestListener"/>
     </listeners>
     <test name="FireFox Tests">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="org.example.test.LoginTest"/>
         </classes>
