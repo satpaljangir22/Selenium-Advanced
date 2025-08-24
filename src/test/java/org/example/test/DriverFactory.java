@@ -41,6 +41,7 @@ public class DriverFactory {
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.setPageLoadTimeout(Duration.ofSeconds(30));
         chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("--disable-gpu");
         chromeOptions.setImplicitWaitTimeout(Duration.ofSeconds(30));
         return chromeOptions;
     }
@@ -50,7 +51,8 @@ public class DriverFactory {
         firefoxOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS);
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         firefoxOptions.setPageLoadTimeout(Duration.ofSeconds(30));
-        //firefoxOptions.addArguments("headless");
+        firefoxOptions.addArguments("headless");
+        firefoxOptions.addArguments("--disable-gpu");
         firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(30));
         return firefoxOptions;
     }
