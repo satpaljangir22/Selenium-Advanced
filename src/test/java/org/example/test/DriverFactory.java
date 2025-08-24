@@ -1,7 +1,9 @@
 package org.example.test;
 
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
 
@@ -11,7 +13,9 @@ public class DriverFactory {
     }
 
     public static synchronized void initDriver(){
-        threadDriver.set(new ChromeDriver());
+        ChromeOptions options = new ChromeOptions();
+        options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS);
+        threadDriver.set(new ChromeDriver(options));
     }
 
     public static void quitDriver(){

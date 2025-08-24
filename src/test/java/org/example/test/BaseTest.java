@@ -13,6 +13,7 @@ public class BaseTest {
     protected void setUp() {
         DriverFactory.initDriver();
         driver = DriverFactory.getDriver();
+        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.navigate().to("https://www.saucedemo.com/");
     }
