@@ -40,7 +40,7 @@ public class DriverFactory {
         chromeOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS);
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.setPageLoadTimeout(Duration.ofSeconds(30));
-        //chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("headless");
         chromeOptions.setImplicitWaitTimeout(Duration.ofSeconds(30));
         return chromeOptions;
     }
