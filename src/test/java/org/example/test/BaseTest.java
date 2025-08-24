@@ -2,20 +2,21 @@ package org.example.test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import utils.ScreenShotUtility;
 
 import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    @BeforeSuite
+    protected void folderCleanUp(){
+        ScreenShotUtility.cleanScreenshotFolder();
+    }
 
     @BeforeMethod
     protected void setUp() {
         DriverFactory.initDriver();
-        driver = DriverFactory.getDriver();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.navigate().to("https://www.saucedemo.com/");
+        DriverFactory.getDriver().navigate().to("https://www.saucedemo.com/");
     }
 
     @AfterMethod
