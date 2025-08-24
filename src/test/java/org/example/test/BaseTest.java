@@ -1,10 +1,7 @@
 package org.example.test;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.ScreenShotUtility;
-
-import java.time.Duration;
 
 public class BaseTest {
 
@@ -13,9 +10,10 @@ public class BaseTest {
         ScreenShotUtility.cleanScreenshotFolder();
     }
 
+    @Parameters({"browser"})
     @BeforeMethod
-    protected void setUp() {
-        DriverFactory.initDriver();
+    protected void setUp(String browser) {
+        DriverFactory.initDriver(browser);
         DriverFactory.getDriver().navigate().to("https://www.saucedemo.com/");
     }
 
