@@ -9,10 +9,4 @@
             <class name="org.example.test.LoginTest"/>
         </classes>
     </test>
-    <test name="FireFox Tests">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="org.example.test.LoginTest"/>
-        </classes>
-    </test>
 </suite>
