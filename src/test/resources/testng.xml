@@ -1,14 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Ecommerce Test Suite" parallel="methods">
+<suite name="Ecommerce Test Suite" parallel="tests">
     <listeners>
         <listener class-name="org.example.listener.TestListener"/>
     </listeners>
-    <test name="Chrome Tests">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="org.example.test.LoginTest"/>
-        </classes>
-    </test>
     <test name="FireFox Tests">
         <parameter name="browser" value="firefox"/>
         <classes>
