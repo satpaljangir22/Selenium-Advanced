@@ -4,6 +4,9 @@ import org.testng.annotations.DataProvider;
 
 public class LoginUsers {
 
+    public static final String STANDARD_USER = "standard_user";
+    public static final String STANDARD_PASSWORD = "secret_sauce";
+
     @DataProvider(name = "validUser", parallel = true)
     public static Object[][] getValidUsers() {
         return new Object[][] {

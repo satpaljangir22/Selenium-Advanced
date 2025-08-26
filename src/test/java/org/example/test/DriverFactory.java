@@ -42,7 +42,10 @@ public class DriverFactory {
         chromeOptions.setPageLoadTimeout(Duration.ofSeconds(30));
         chromeOptions.addArguments("headless");
         chromeOptions.addArguments("--disable-gpu");
-        chromeOptions.setImplicitWaitTimeout(Duration.ofSeconds(30));
+        chromeOptions.setExperimentalOption("prefs", new java.util.HashMap<String, Object>() {{
+            put("credentials_enable_service", false);
+            put("profile.password_manager_enabled", false); // Optional: for older versions or additional control
+        }});
         return chromeOptions;
     }
 
@@ -53,7 +56,6 @@ public class DriverFactory {
         firefoxOptions.setPageLoadTimeout(Duration.ofSeconds(30));
         firefoxOptions.addArguments("headless");
         firefoxOptions.addArguments("--disable-gpu");
-        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(30));
         return firefoxOptions;
     }
 }

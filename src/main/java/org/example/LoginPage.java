@@ -14,8 +14,8 @@ public class LoginPage extends BasePage {
     }
 
     public void LoginToApp(String loginUserName, String loginUserPassword){
-        this.driver.findElement(userName).sendKeys(loginUserName);
-        this.driver.findElement(password).sendKeys(loginUserPassword);
-        this.driver.findElement(loginButton).click();
+        this.enterText(userName, loginUserName);
+        this.enterText(password, loginUserPassword);
+        this.clickElement(loginButton);
     }
 }

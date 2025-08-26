@@ -1,31 +1,34 @@
 package org.example.listener;
 
+import io.qameta.allure.Allure;
 import org.example.test.DriverFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utils.ScreenShotUtility;
 
 public class TestListener implements ITestListener {
 
     protected WebDriver driver;
 
-    @Override
-    public void onTestFailure(ITestResult result) {
+    private void attachScreenShot(String testName){
         driver = DriverFactory.getDriver();
-        if(driver != null){
-            String testName = result.getMethod().getMethodName();
-            ScreenShotUtility.captureScreenShot(driver, testName);
+        if (driver != null && driver instanceof TakesScreenshot){
+            byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            Allure.addAttachment(testName + " Screenshot", "image/png",
+                    new java.io.ByteArrayInputStream(screenshot), ".png");
+
         }
     }
 
     @Override
+    public void onTestFailure(ITestResult result) {
+        attachScreenShot(result.getMethod().getMethodName());
+    }
+
+    @Override
     public void onTestSuccess(ITestResult result) {
-        driver = DriverFactory.getDriver();
-        if(driver != null){
-            String testName = result.getMethod().getMethodName();
-            String instanceName = result.getMethod().getDataProviderMethod().getName();
-            ScreenShotUtility.captureScreenShot(driver, testName);
-        }
+        attachScreenShot(result.getMethod().getMethodName());
     }
 }

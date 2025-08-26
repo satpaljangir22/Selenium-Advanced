@@ -1,14 +1,8 @@
 package org.example.test;
 
 import org.testng.annotations.*;
-import utils.ScreenShotUtility;
 
 public class BaseTest {
-
-    @BeforeSuite
-    protected void folderCleanUp(){
-        ScreenShotUtility.cleanScreenshotFolder();
-    }
 
     @Parameters({"browser"})
     @BeforeMethod

@@ -12,13 +12,13 @@ public class LoginTest extends BaseTest {
     public void loginStandardUsers(String userName, String userPassword) {
         loginPage = new LoginPage(DriverFactory.getDriver());
         loginPage.LoginToApp(userName, userPassword);
-        Assert.assertEquals(DriverFactory.getDriver().getCurrentUrl(), "https://www.saucedemo.com/inventory.html", userName + " Failed");
+        Assert.assertEquals(loginPage.getCurrentUrl(), "https://www.saucedemo.com/inventory.html", userName + " Failed");
     }
 
     @Test(dataProvider = "inValidUser", dataProviderClass = LoginUsers.class)
     public void loginInvalidUsers(String userName, String userPassword){
         loginPage = new LoginPage(DriverFactory.getDriver());
         loginPage.LoginToApp(userName, userPassword);
-        Assert.assertEquals(DriverFactory.getDriver().getCurrentUrl(), "https://www.saucedemo.com/inventory.html", userName + " Failed");
+        Assert.assertEquals(loginPage.getCurrentUrl(), "https://www.saucedemo.com/inventory.html", userName + " Failed");
     }
 }
