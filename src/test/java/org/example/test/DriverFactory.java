@@ -7,11 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import utils.AllureLogger;
 
 import java.time.Duration;
 
 public class DriverFactory {
 
+    private static final AllureLogger log = AllureLogger.getLogger(DriverFactory.class);
     private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static WebDriver getDriver(){
         return threadDriver.get();
@@ -21,11 +23,19 @@ public class DriverFactory {
         if(browser == null){
             browser = "chrome";
         }
-        if (browser.equalsIgnoreCase("firefox")) {
-            threadDriver.set(new FirefoxDriver(setFirefoxOptions()));
-        } else {
-            threadDriver.set(new ChromeDriver(setChromeOptions()));
+        try {
+            if (browser.equalsIgnoreCase("firefox")) {
+                threadDriver.set(new FirefoxDriver(setFirefoxOptions()));
+                log.info(browser + " browser is initialized");
+            } else {
+                threadDriver.set(new ChromeDriver(setChromeOptions()));
+                log.info(browser + " browser is initialized");
+            }
+        } catch (Exception e) {
+            log.error("Failed to initialize WebDriver Instance", e);
+            throw e;
         }
+
     }
 
     public static void quitDriver(){
