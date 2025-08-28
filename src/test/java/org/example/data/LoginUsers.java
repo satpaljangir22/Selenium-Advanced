@@ -7,7 +7,7 @@ public class LoginUsers {
     public static final String STANDARD_USER = "standard_user";
     public static final String STANDARD_PASSWORD = "secret_sauce";
 
-    @DataProvider(name = "validUser", parallel = true)
+    @DataProvider(name = "validUser")
     public static Object[][] getValidUsers() {
         return new Object[][] {
                 {"standard_user", "secret_sauce"},
@@ -16,7 +16,7 @@ public class LoginUsers {
         };
     }
 
-    @DataProvider(name="inValidUser", parallel = true)
+    @DataProvider(name="inValidUser")
     public static Object[][] getInvalidUsers(){
         return new Object[][] {
                 {"error_user", "secret_sauce"},

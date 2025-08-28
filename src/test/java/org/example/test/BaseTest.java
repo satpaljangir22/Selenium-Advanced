@@ -2,10 +2,25 @@ package org.example.test;
 
 import org.testng.annotations.*;
 import utils.AllureLogger;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class BaseTest {
 
     private static final AllureLogger log = AllureLogger.getLogger(BaseTest.class);
+
+    @BeforeSuite
+    protected void cleanUp(){
+        try{
+            FileWriter logWriter = new FileWriter("logs/framework.log");
+            logWriter.write("");
+            logWriter.close();
+            log.info("Cleared existing logs if any");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Parameters({"browser"})
     @BeforeMethod
